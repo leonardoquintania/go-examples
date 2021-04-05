@@ -14,7 +14,7 @@ func main() {
 	for i := 1; i <= concurrency; i++ {
 		go worker(requestId, i)
 	}
-	for i := 0; i < 10; i++ {
+	for i := 1; i <= 10; i++ {
 		requestId <- i
 	}
 }
