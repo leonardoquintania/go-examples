@@ -1,5 +1,11 @@
 package main
 
+import (
+	"github.com/leonardoquintania/go-examples/http"
+	"github.com/leonardoquintania/go-examples/model"
+	uuid "github.com/satori/go.uuid"
+)
+
 // import (
 // 	"errors"
 // )
@@ -58,9 +64,27 @@ package main
 
 // }
 func main() {
-	product1 := model.NewProduct()
-	product1.Name = "Carrinho"
+	product1 := model.Product{
+		ID:   uuid.NewV4().String(),
+		Name: "Carrinho",
+	}
 
-	product2 := model.NewProduct()
-	product2.Name = "Boneca"
+	product2 := model.Product{
+		ID:   uuid.NewV4().String(),
+		Name: "Boneca",
+	}
+
+	// product3 := model.NewProduct()
+	// 	ID:   uuid.NewV4().String(),
+	// 	Name: "Boneca",
+	// }
+
+	products := model.Products{}
+	products.Add(product1)
+	products.Add(product2)
+
+	server := http.NewWebServer()
+	server.Products = &products
+	server.Serve()
+
 }
